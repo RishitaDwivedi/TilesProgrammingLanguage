@@ -1,0 +1,18 @@
+{
+read tile "tile1"
+
+Tile subtile1 = subtiling tile (0,0) 6
+Tile subtile2 = subtiling tile (2,2) 6
+Tile subtile3 = subtiling tile (4,4) 6
+
+Tile tile1 = repeatX subtile1 3
+Tile tile2 = repeatX subtile2 3
+Tile tile3 = repeatX subtile3 3
+
+--Block block =  addUnder addUnder addUnder emptyBlock [tile1] [tile2] [tile3]
+
+Block block = addRight emptyBlock [tile1,tile2,tile3]
+
+return block
+
+}

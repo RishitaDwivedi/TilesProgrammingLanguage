@@ -1,0 +1,27 @@
+{
+--complete & tested
+read tile "tile1"
+
+Integer i = length tile
+
+Tile blank = makeBlank i
+
+Tile tile1 = tile
+Tile tileY = reflectY tile
+Tile tileX = reflectX tile
+Tile tileXY = reflectX tileY
+
+--Block base1 = addRight addRight addRight emptyBlock [tile1] [tileY] [blank]
+Block base1 = reformat addUnder emptyBlock [tile1,tileY,blank]
+--Block base2 = reformat addRight reformat addRight reformat addRight emptyBlock [blank] [tileX] [tileXY]
+Block base2 = reformat addUnder emptyBlock [blank,tileX,tileXY]
+
+Block base = reformat addUnderBlock base1 base2
+Block baseX = reflectXBlock base
+
+Block baseX2 = reformat addRightBlock base baseX
+Block row = reformat repeatXBlock baseX2 10
+Block whole = reformat repeatYBlock row 30
+
+return whole
+}

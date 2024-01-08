@@ -1,0 +1,14 @@
+{
+-- complete & tested
+read tile1 "tile1"
+read tile2 "tile2"
+
+Block bl = reformat addUnder emptyBlock [tile1,tile2]
+Block bl2 = reformat addUnder emptyBlock [tile2,tile1]
+Block blX1 = repeatXBlock bl 32
+Block blX2 = repeatXBlock bl2 32
+Block blY = reformat addUnderBlock blX1 blX2
+Block blY2 = reformat repeatYBlock blY 32
+return blY2
+
+}

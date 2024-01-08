@@ -1,0 +1,23 @@
+{
+--complete & tested
+read tile "tile1"
+
+Tile topLeft = tile
+Tile topRight = rotate tile
+Tile bottomLeft = rotate rotate rotate tile
+Tile bottomRight = rotate rotate tile
+
+Block base = reformat addUnder reformat addUnder emptyBlock [topLeft,topRight] [bottomLeft,bottomRight]
+Block scaleBase = reformat scale base 3
+
+Block sides = reformat repeatYBlock base 5
+Block top = reformat addRightBlock reformat addRightBlock base base base
+
+Block base2 = reformat addUnderBlock top scaleBase
+Block base3 = reformat addUnderBlock base2 top
+Block base4 = reformat addRightBlock sides base3
+Block base5 = reformat addRightBlock base4 sides
+
+
+return base5
+}

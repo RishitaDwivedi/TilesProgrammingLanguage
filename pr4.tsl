@@ -1,0 +1,53 @@
+{
+
+-- complete & tested
+read tile1 "tile1"
+read tile2 "tile2"
+read tile3 "tile3"
+
+Integer rowCount = 0
+Integer colCount = 0
+Integer size = 50 * length tile1
+
+Tile blank = makeBlank length tile1
+--Tile tile3N = tileNegate tile3
+--Tile tile1C = tileConj tile1 tile3N
+Tile tile1C  = tileConj tile1 tileNegate tile3
+Tile tile2C = tileConj tile2 tileNegate tile3
+
+Block row = emptyBlock
+Block whole = emptyBlock
+
+while rowCount < 50 then {
+    while colCount < 25 then {
+
+        if colCount + rowCount < 50 then
+            row = reformat addRight row [tile1C]
+        else
+           row = reformat addRight row [blank] ;
+
+        colCount = colCount + 1
+
+        if colCount == 49 then
+            rowCount = rowCount + 1
+            colCount = 0
+            whole = reformat addUnderBlock whole row
+            row = emptyBlock ;
+    } ;
+
+    if rowCount < colCount + 2 then
+        row = reformat addRight row [tile2C]
+    else
+        row = reformat addRight row [blank] ;
+
+    colCount = colCount + 1
+
+    if colCount == 49 then
+        rowCount = rowCount + 1
+        colCount = 0
+        whole = reformat addUnderBlock whole row
+        row = emptyBlock ;
+};
+
+return whole
+}
